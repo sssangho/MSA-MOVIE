@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>리뷰 관리</title>
+    <link rel="stylesheet" th:href="@{/css/style.css}">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+</head>
+<body>
+
+<!-- 상단 네비게이션 -->
+<nav class="navbar bg-dark navbar-dark px-4">
+    <a href="/" class="navbar-brand">🎬 MSA Movie Demo</a>
+    <div class="ms-auto">
+        <a href="/movies" class="btn btn-primary me-2">영화 관리</a>
+        <a href="/reviews" class="btn btn-secondary">리뷰 관리</a>
+    </div>
+</nav>
+
+<!-- 메인 컨테이너 -->
+<div class="container mt-4">
+    <div class="card p-4 shadow-sm">
+        <div class="d-flex justify-content-between align-items-center mb-4">
+            <h2>💬 리뷰 관리</h2>
+            <button class="btn btn-primary" onclick="showAddReviewModal()">리뷰 추가</button>
+        </div>
+
+        <div class="table-responsive">
+            <table class="table table-striped">
+                <thead>
+                <tr>
+                    <th>ID</th>
+                    <th>영화 ID</th>
+                    <th>댓글</th>
+                    <th>평점</th>
+                    <th>작업</th>
+                </tr>
+                </thead>
+                <tbody id="reviewTableBody">
+                <!-- JS에서 리뷰 목록 동적 생성 -->
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+
+<!-- 💬 리뷰 추가/수정 모달 -->
+<div class="modal fade" id="reviewModal" tabindex="-1">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="modalTitle">리뷰 추가</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+            </div>
+            <div class="modal-body">
+                <form id="reviewForm">
+                    <input type="hidden" id="reviewId">
+
+                    <div class="mb-3">
+                        <label class="form-label">영화 ID</label>
+                        <input type="number" class="form-control" id="movieId" required>
+                    </div>
+
+                    <div class="mb-3">
+                        <label class="form-label">댓글</label>
+                        <textarea class="form-control" id="comment" rows="3" required></textarea>
+                    </div>
+
+                    <div class="mb-3">
+                        <label class="form-label">평점 (1~5)</label>
+                        <input type="number" class="form-control" id="rating" min="1" max="5" required>
+                    </div>
+                </form>
+            </div>
+
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">취소</button>
+                <button type="button" class="btn btn-primary" onclick="saveReview()">저장</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Bootstrap JS + Review Script -->
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+<script th:src="@{/js/reviews.js}"></script>
+
+</body>
+</html>
