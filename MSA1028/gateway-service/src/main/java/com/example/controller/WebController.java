@@ -1,4 +1,4 @@
-package com.example.controller;
+package com.example.gateway.controller;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -9,7 +9,7 @@ public class WebController {
 
     @GetMapping("/")
     public String index(Model model) {
-        model.addAttribute("message", "MSA 프로젝트에 오신 것을 환영합니다");
+        model.addAttribute("message", "🎬 MSA 영화 리뷰 프로젝트에 오신 것을 환영합니다!");
         return "index";
     }
 
@@ -21,18 +21,18 @@ public class WebController {
 
     @GetMapping("/register")
     public String register(Model model) {
-        model.addAttribute("message", "회원 가입");
+        model.addAttribute("message", "회원가입");
         return "register";
     }
 
     @GetMapping("/movies")
-    public String products(Model model) {
+    public String movies(Model model) {
         model.addAttribute("message", "영화 목록");
         return "movies";
     }
 
     @GetMapping("/reviews")
-    public String orders(Model model) {
+    public String reviews(Model model) {
         model.addAttribute("message", "리뷰 목록");
         return "reviews";
     }
@@ -43,14 +43,4 @@ public class WebController {
         return "admin";
     }
 
-    @GetMapping("/customers")
-    public String customer(Model model) {
-        model.addAttribute("message", "고객 목록");
-        return "customers";
-    }
-
-    @GetMapping("/users")
-    public String users() {
-        return "users";
-    }
-} 
+}
